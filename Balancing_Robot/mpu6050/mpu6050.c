@@ -53,10 +53,10 @@ void mpu6050_read_gyro_ALL(gyroVal * data){
 
 	mpu6050_read_gyro_X(tmp);
 	data->gyro_x = (tmp[0]<<8)|(tmp[1]);
-	mpu6050_read_gyro_Y(tmp);
-	data->gyro_y = (tmp[0]<<8)|(tmp[1]);
-	mpu6050_read_gyro_Z(tmp);
-	data->gyro_z = (tmp[0]<<8)|(tmp[1]);
+	//mpu6050_read_gyro_Y(tmp);
+	//data->gyro_y = (tmp[0]<<8)|(tmp[1]);
+	//mpu6050_read_gyro_Z(tmp);
+	//data->gyro_z = (tmp[0]<<8)|(tmp[1]);
 }
 
 

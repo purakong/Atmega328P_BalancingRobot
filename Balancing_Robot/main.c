@@ -151,17 +151,17 @@ int main(void){
 		//Only use Acceleration Sensor
 		accelAngelX = atan(p_accel->accel_y/sqrt(pow(p_accel->accel_x,2)+pow(p_accel->accel_z,2)));
 		accelAngelX = accelAngelX * RADIAN_TO_DEGREE;
-		accelAngelY = atan(-p_accel->accel_x/sqrt(pow(p_accel->accel_y,2)+pow(p_accel->accel_z,2)));
-		accelAngelY = accelAngelY * RADIAN_TO_DEGREE;
+		//accelAngelY = atan(-p_accel->accel_x/sqrt(pow(p_accel->accel_y,2)+pow(p_accel->accel_z,2)));
+		//accelAngelY = accelAngelY * RADIAN_TO_DEGREE;
 		
 		//Kalman Filter
 		kalmanAngleX = Kalman_GetAngle(p_kalmanX,accelAngelX,((double)(p_gyro->gyro_x) / DEGREE_PER_SEC),dt);
-		kalmanAngleY = Kalman_GetAngle(p_kalmanY,accelAngelY,((double)(p_gyro->gyro_y) / DEGREE_PER_SEC),dt);
+		//kalmanAngleY = Kalman_GetAngle(p_kalmanY,accelAngelY,((double)(p_gyro->gyro_y) / DEGREE_PER_SEC),dt);
 		
 		//Only use Gyro Sensor
-		gyroAngleX += ((double)(p_gyro->gyro_x- averGyX) / DEGREE_PER_SEC) * dt;
-		gyroAngleY += ((double)(p_gyro->gyro_y- averGyY) / DEGREE_PER_SEC) * dt;
-		gyroAngleZ += ((double)(p_gyro->gyro_z- averGyZ) / DEGREE_PER_SEC) * dt;
+		//gyroAngleX += ((double)(p_gyro->gyro_x- averGyX) / DEGREE_PER_SEC) * dt;
+		//gyroAngleY += ((double)(p_gyro->gyro_y- averGyY) / DEGREE_PER_SEC) * dt;
+		//gyroAngleZ += ((double)(p_gyro->gyro_z- averGyZ) / DEGREE_PER_SEC) * dt;
 		
 		//PID Control
 		PID_singlePID(kalmanAngleX,dt,&roll_pid_gain);
@@ -170,13 +170,17 @@ int main(void){
 		//pmw_setMotorSpeed((uint8_t));
 		pmw_setMotorSpeed((uint8_t)roll_pid_gain);
 		
-		/*
-		UART_printString("Roll PID : ");
-		UART_printDouble(roll_pid_gain,3);
-		UART_printString("\t");
-		UART_transmit(10);
-		UART_transmit(10);
-		*/
+
+		//UART_printString("DT : ");
+		//UART_printDouble(dt,3);
+		//UART_printString("\t");
+		
+		//UART_printString("Roll PID : ");
+		//UART_printDouble(roll_pid_gain,3);
+		//UART_printString("\t");
+		//UART_transmit(10);
+		//UART_transmit(10);
+		
 		/*		
 		UART_printString("Kalman Angel X : ");
 		UART_printDouble(kalmanAngleX,3);
